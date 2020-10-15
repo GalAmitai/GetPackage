@@ -25,7 +25,7 @@ class DeliveryService {
     }
 
     static async getDeliveries(date, type, user_id) {
-        var deliveries = null;
+        let deliveries = null;
         switch(type) {
             case "sender":
                 deliveries = await DeliveryModel.find({
@@ -51,7 +51,7 @@ class DeliveryService {
     static async assignDelivery(deliveryId, courierId) {
         // check valid delivery id
         try {
-            var delivery = await DeliveryModel.findById(deliveryId);
+            let delivery = await DeliveryModel.findById(deliveryId);
             if(delivery) {
                 // check maximum 5 delivery each day.
                 let dateToday = new Date('10/14/2020'); // need be today but for test i keep 14/10/2020
@@ -81,7 +81,7 @@ class DeliveryService {
     }
 
     static async courierRevenue(dateFrom, dateTo, courierId) {
-        var revenue = 0;
+        let revenue = 0;
         const courierDeliveries = await DeliveryModel.find({
             assign_to: courierId,
             date: {
