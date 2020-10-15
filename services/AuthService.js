@@ -2,6 +2,7 @@ const md5 = require('md5');
 const jwt = require('jsonwebtoken');
 const UserModel = require('./../models/User');
 const config = require('./../configuration/config');
+const Logger = require('./../utils/Logger');
 
 class AuthService {
 
@@ -23,7 +24,7 @@ class AuthService {
             }
             return null;
         } catch(err) {
-            console.log(err);
+            Logger.log(err);
         }
     }
 

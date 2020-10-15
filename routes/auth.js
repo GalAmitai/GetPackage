@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const AuthController = require('../controllers/authController');
-const ErrorHandler = require('./../services/ErrorHandler');
+const Logger = require('./../utils/Logger');
 const AuthMiddleware = require('./../middlewares/auth');
 
 router.post('/login', AuthMiddleware.login , async (req, res) => {
@@ -12,7 +12,7 @@ router.post('/login', AuthMiddleware.login , async (req, res) => {
             data: response.data
         });
     } catch (err) {
-        ErrorHandler.error(err);
+        Logger.error(err);
         res.status(500).json(err);
     }
 });

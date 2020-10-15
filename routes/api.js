@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ErrorHandler = require('./../services/ErrorHandler');
+const Logger = require('./../utils/Logger');
 const { verifyJWTToken } = require('./../middlewares/jwt');
 const DeliveryMiddleware = require('./../middlewares/delivery');
 const DeliveryController = require('./../controllers/DeliveryController');
@@ -13,7 +13,7 @@ router.post('/addDelivery', [verifyJWTToken, DeliveryMiddleware.addDelivery] , a
             data: response.data
         });
     } catch (err) {
-        ErrorHandler.error(err);
+        Logger.error(err);
         res.status(500).json(err);
     }
 });
@@ -26,7 +26,7 @@ router.get('/getDeliveries', [verifyJWTToken, DeliveryMiddleware.getDeliveries] 
             data: response.data
         });
     } catch (err) {
-        ErrorHandler.error(err);
+        Logger.error(err);
         res.status(500).json(err);
     }
 });
@@ -39,7 +39,7 @@ router.post('/assignDelivery', [verifyJWTToken, DeliveryMiddleware.assignDeliver
             data: response.data
         });
     } catch (err) {
-        ErrorHandler.error(err);
+        Logger.error(err);
         res.status(500).json(err);
     }
 });
@@ -52,7 +52,7 @@ router.get('/courierRevenue', [verifyJWTToken, DeliveryMiddleware.courierRevenue
             data: response.data
         });
     } catch (err) {
-        ErrorHandler.error(err);
+        Logger.error(err);
         res.status(500).json(err);
     }
 });

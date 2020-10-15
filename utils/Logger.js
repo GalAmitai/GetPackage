@@ -1,6 +1,6 @@
-const config = require('./../configuration/config');
+const config = require('../configuration/config');
 
-class ErrorHandler {
+class Logger {
 
     static async log(text) {
         try {
@@ -25,4 +25,4 @@ class ErrorHandler {
     }
 }
 
-module.exports = ErrorHandler;
+module.exports = Logger;

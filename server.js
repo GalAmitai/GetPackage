@@ -6,7 +6,7 @@ const mongoose          = require('mongoose');
 const config            = require('./configuration/config');
 const authRouter        = require('./routes/auth');
 const apiRouter         = require('./routes/api');
-const ErrorHandler      = require('./services/ErrorHandler');
+const Logger            = require('./utils/Logger');
 
 const app = express();
 
@@ -17,14 +17,14 @@ const initialize = () => {
     // Connect to DB
     mongoose.connect(config.mongoConfiguration.connection, { useNewUrlParser: true, useUnifiedTopology: true });
     mongoose.connection.on('open', () => {
-        ErrorHandler.log('Connected to DB!');
+        Logger.log('Connected to DB!');
     });
 
     app.use('/auth', authRouter);
     app.use('/api', apiRouter);
     
     app.listen(port, () => {
-        ErrorHandler.log(`Server running on port: ${port}`);
+        Logger.log(`Server running on port: ${port}`);
     });
 }
 
